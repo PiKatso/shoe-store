@@ -25,7 +25,7 @@
 
         <input class="form-control" name="store-name" type="text" placeholder="new name">
         <br>
-        <button class="btn btn-success" type="submit">Update</button>
+        <button class="btn btn-success" type="submit">Update <%= @store.name %> </button>
         <br>
       </form>
       <br>
@@ -41,7 +41,7 @@
         </select>
         <br>
         <br>
-        <button class="btn btn-success" type="submit">Add brand</button>
+        <button class="btn btn-success" type="submit">Add brand to <%= @store.name %> </button>
       </form>
       <br>
       <!-- form to add brands -->
@@ -53,7 +53,7 @@
         <label for="brand-price">Price</label>
         <input class="form-control" type="text" name="brand-price">
         <br>
-        <button type="submit" class="btn btn-success">Add New brand</button>
+        <button type="submit" class="btn btn-success">Add New brand to <%= @store.name %> </button>
       </form>
     </div>
   </div>

@@ -7,7 +7,7 @@
       <h3>Stores that carry <%= @brand.name %></h3>
       <ul>
         <% @brand.stores.each do |store| %>
-          <h5> <%= store.name %></a></h5>
+          <h5><a href="/store/<%= store.id %>"><%= store.name %></a></h5>
         <% end %>
       </ul>
       <br>
@@ -37,7 +37,7 @@
         </select>
         <br>
         <br>
-        <button class="btn btn-success" type="submit">Add brand</button>
+        <button class="btn btn-success" type="submit">Add Store</button>
       </form>
       <br>
       <br>
