@@ -19,12 +19,6 @@ end
 post "/stores" do
   store_name = params.fetch("store-name")
   @new_store = Store.create({name: store_name})
-  # if @new_store.save()
-  #   erb(:store)
-  # else
-  #   erb(:errors)
-  # end
-
   redirect "/stores"
 end
 
@@ -103,7 +97,7 @@ patch "/brand/:id/update" do
   brand_price =params.fetch("brand-price")
   @brand = Brand.find(params.fetch("id").to_i)
   @brand.update({name: brand_name, price: brand_price})
-  redirect "/stores"
+  redirect "/brand/#{@brand.id}"
 end
 
 post "/brand/assign-store/:id" do
