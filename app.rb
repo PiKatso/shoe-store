@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/reloader'
-require './lib/shoestore'
+require 'sinatra/activerecord'
+require './lib/shoe-store'
 require 'pry'
 
 also_reload('lib/**/*.rb')
