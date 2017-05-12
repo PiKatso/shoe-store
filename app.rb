@@ -16,8 +16,45 @@ get('/stores') do
   erb :store
 end
 
+post "/stores" do
+  store_name = params.fetch("store-name")
+  Store.create({name: store_name})
+  redirect "/stores"
+end
+
+get "/store/:id" do
+  store_id = params.fetch("id")
+  @store = Store.find(store_id)
+  erb(:store_edit)
+end
+
+post "/store/add-brand" do
+  store_id = params.fetch("store_id")
+  store = Store.find(store_id)
+  brand_name = params.fetch("brand-name")
+  brand_price = params.fetch("brand-price")
+  new_brand = Brand.create(name: brand_name, price: brand_price)
+  store.brands.push(new_brand)
+  redirect "/store/#{store_id}"
+end
+
 # Brand routing
 get('/brands') do
   @brand_message = Brand.all.length > 0 ? "Select a brand to review prices and locations for purchase" : "Add a brand below"
   erb :brand
+end
+
+post "/brands" do
+  brand_name = params.fetch("brand-name")
+  brand_price = params.fetch("brand-price")
+  Brand.create({name: brand_name, price: brand_price})
+  redirect "/brands"
+end
+
+#routed from store
+get "/brand/:id" do
+  @brand_id = params.fetch("id")
+  @brand = Brand.find(@brand_id)
+  @stores = Store.all
+  erb(:brand_edit)
 end
