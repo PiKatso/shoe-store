@@ -1,0 +1,11 @@
+#MEGA {
+  width: 500px;
+  height: 100px;
+  font-size: 50px;
+  margin-bottom: 40px;
+  object-position: center;
+}
+
+.col-md-6 {
+  text-align: center;
+}
