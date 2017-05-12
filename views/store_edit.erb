@@ -30,7 +30,7 @@
       </form>
       <br>
       <!-- form to add existing brands to Store -->
-      <form action="/store/assign-brand/<%= @store_id %>" method="post">
+      <form action="/store/<%= @store.id %>/assign-brand" method="post">
         <label for="brand_id">Select a Brand</label>
         <br>
         <input name="_method" type="hidden" value="post #{<%= @store.id %>}">

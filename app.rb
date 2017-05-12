@@ -46,7 +46,7 @@ patch "/store/:id/update" do
   redirect "/stores"
 end
 
-post "/store/assign-brand/:id" do
+post "/store/:id/assign-brand" do
   brand_id = params.fetch('brand_id')
   brand = Brand.find(brand_id)
   store_id = params.fetch('id')
