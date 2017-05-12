@@ -8,11 +8,6 @@ class Brand < ActiveRecord::Base
 
   before_save :capitalize_title
 
-  private
-
-  def capitalize_title
-    self.name = name.split.map(&:capitalize).join(" ")
-  end
 end
 
 class Store < ActiveRecord::Base
@@ -23,14 +18,15 @@ class Store < ActiveRecord::Base
 
   before_save :capitalize_title
 
-  private
-
-  def capitalize_title
-    self.name = name.split.map(&:capitalize).join(" ")
-  end
 end
 
 class BrandsStores < ActiveRecord::Base
   belongs_to :brand
   belongs_to :store
+end
+
+private
+
+def capitalize_title
+  self.name = name.split.map(&:capitalize).join(" ")
 end

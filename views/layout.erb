@@ -9,9 +9,23 @@
   </head>
   <body>
     <div class="container">
-    <h1></h1>
-    <hr>
-      <%= yield %>
+      <div class="row">
+        <div class="col-md-6">
+          <form action="/brands" method="post">
+          <button class="btn btn-info MEGA" type="submit" name="button">Brands</button>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <form action="/stores" method="post">
+          <button class="btn btn-info MEGA" type="submit" name="button">Stores</button>
+          </form>
+        </div>
+      </div>
+      <br>
+      <hr>
+        <%= yield %>
+      <hr>
+      <a href="/" class="btn btn-info">Home</a>
     </div>
   </body>
 </html>
