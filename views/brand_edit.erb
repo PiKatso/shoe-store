@@ -13,6 +13,7 @@
       <br>
     </div>
     <div class="col-md-6">
+      <!-- form to update brand to store -->
       <form action="/brand/<%= @brand.id() %>/update" method="post">
         <input name="_method" type="hidden" value="patch">
 
@@ -24,7 +25,7 @@
         <br>
       </form>
       <br>
-
+      <!-- form to assign project -->
       <form action="/brand/assign-project/<%= @brand_id %>" method="post">
         <label for="store_id">Select a Project</label>
         <br>
@@ -37,6 +38,14 @@
         <br>
         <br>
         <button class="btn btn-success" type="submit">Add brand</button>
+      </form>
+      <br>
+      <br>
+      <!-- form to delete brand -->
+      <form action="/brand" method="post">
+        <input name="_method" type="hidden" value="delete">
+        <input name="brand_id" type="hidden" value="<%= @brand.id %>">
+        <button type="submit" class="btn btn-danger">Delete <%= @brand.name %></button>
       </form>
     </div>
   </div>

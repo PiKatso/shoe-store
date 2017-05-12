@@ -42,7 +42,7 @@ patch "/store/:id/update" do
   store_name = params.fetch("store-name")
   @store = Store.find(params.fetch("id").to_i)
   @store.update({name: store_name})
-  redirect "/brands"
+  redirect "/stores"
 end
 
 post "/store/assign-project/:id" do
@@ -52,6 +52,13 @@ post "/store/assign-project/:id" do
   store = Store.find(store_id)
   brand.stores.push(brand)
   redirect "/brands"
+end
+
+delete "/store" do
+  store_id= params.fetch('store_id')
+  store = Store.find(store_id)
+  store.destroy
+  redirect "/stores"
 end
 
 # Brand routing
@@ -89,5 +96,12 @@ post "/brand/assign-project/:id" do
   brand_id = params.fetch('id')
   brand = Brand.find(brand_id)
   store.brands.push(brand)
-  redirect "/stores"
+  redirect "/brand/#{brand_id}"
+end
+
+delete "/brand" do
+  brand_id= params.fetch('brand_id')
+  brand = Brand.find(brand_id)
+  .destroy
+  redirect "/brands"
 end
