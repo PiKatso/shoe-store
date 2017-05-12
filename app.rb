@@ -58,3 +58,28 @@ get "/brand/:id" do
   @stores = Store.all
   erb(:brand_edit)
 end
+
+# post "/brands" do
+#   store_id = params.fetch("store_id")
+#   store = Recipe.find(store_id)
+#   ingredient_name = params.fetch("ingredient-name")
+#   new_ingredient = Ingredient.create(name: ingredient_name)
+#   store.ingredients.push(new_ingredient)  #this how to assign to join table!!!! yay!
+#   redirect "/store/edit/#{store_id}"
+# end
+
+patch "/brand/:id/update" do
+  brand_name = params.fetch("brand-name")
+  @brand = Brand.find(params.fetch("id").to_i)
+  @brand.update({name: brand_name})
+  redirect "/stores"
+end
+
+post "/brand/assign-project/:id" do
+  store_id = params.fetch('store_id')
+  store = Store.find(store_id)
+  brand_id = params.fetch('id')
+  brand = Brand.find(brand_id)
+  store.brands.push(brand)
+  redirect "/stores"
+end

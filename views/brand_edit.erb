@@ -1,32 +1,40 @@
-<h1>Update: <%= @brand.name %></h1>
-<br>
-<form action="/brand/<%= @brand.id() %>/update" method="post">
-  <input name="_method" type="hidden" value="patch">
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h1><%= @brand.name %></h1>
+      <h3>$<%= @brand.price %>.00</h3>
+      <br>
+      <h3>Stores that carry <%= @brand.name %></h3>
+      <ul>
+        <% @brand.stores.each do |store| %>
+          <h5> <%= store.name %></a></h5>
+        <% end %>
+      </ul>
+      <br>
+    </div>
+    <div class="col-md-6">
+      <form action="/brand/<%= @brand.id() %>/update" method="post">
+        <input name="_method" type="hidden" value="patch">
 
-  <input id="brand-name" name="brand-name" type="text" placeholder="Edit the brand:">
+        <input id="brand-name" name="brand-name" type="text" placeholder="Edit the brand:">
 
-  <button class="btn btn-success" type="submit">Update</button>
-</form>
-<br>
+        <button class="btn btn-success" type="submit">Update</button>
+      </form>
+      <br>
 
-<form action="/brand/project/connector/<%= @brand_id %>" method="post">
-  <label for="store_id">Select a Project</label>
-  <br>
-  <input name="_method" type="hidden" value="post #{<%= @brand.id %>}">
-  <select id='store_id' name='store_id' type='text'>
-    <% @stores.each() do |store| %>
-      <option value="<%= store.id()%>"> <%= store.name() %> </option>
-    <% end %>
-  </select>
-  <br>
-
-  <br>
-  <button class="btn btn-success" type="submit">Add brand</button>
-</form>
-<br>
-<h3>View all stores that include this brand</h3>
-<ul>
-  <% @brand.stores.each do |store| %>
-    <h5> <%= store.name %></a></h5>
-  <% end %>
-</ul>
+      <form action="/brand/assign-project/<%= @brand_id %>" method="post">
+        <label for="store_id">Select a Project</label>
+        <br>
+        <input name="_method" type="hidden" value="post #{<%= @brand.id %>}">
+        <select id='store_id' name='store_id' type='text'>
+          <% @stores.each() do |store| %>
+            <option value="<%= store.id()%>"> <%= store.name() %> </option>
+          <% end %>
+        </select>
+        <br>
+        <br>
+        <button class="btn btn-success" type="submit">Add brand</button>
+      </form>
+    </div>
+  </div>
+</div>
