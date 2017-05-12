@@ -25,6 +25,7 @@ end
 get "/store/:id" do
   store_id = params.fetch("id")
   @store = Store.find(store_id)
+  @brands = Brand.all
   erb(:store_edit)
 end
 
@@ -43,6 +44,15 @@ patch "/store/:id/update" do
   @store = Store.find(params.fetch("id").to_i)
   @store.update({name: store_name})
   redirect "/stores"
+end
+
+post "/store/assign-brand/:id" do
+  brand_id = params.fetch('brand_id')
+  brand = Brand.find(brand_id)
+  store_id = params.fetch('id')
+  store = Store.find(store_id)
+  brand.stores.push(store)
+  redirect "/store/#{store_id}"
 end
 
 post "/store/assign-project/:id" do
@@ -90,7 +100,7 @@ patch "/brand/:id/update" do
   redirect "/stores"
 end
 
-post "/brand/assign-project/:id" do
+post "/brand/assign-store/:id" do
   store_id = params.fetch('store_id')
   store = Store.find(store_id)
   brand_id = params.fetch('id')
@@ -102,6 +112,6 @@ end
 delete "/brand" do
   brand_id= params.fetch('brand_id')
   brand = Brand.find(brand_id)
-  .destroy
+  brand.destroy
   redirect "/brands"
 end

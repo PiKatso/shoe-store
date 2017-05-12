@@ -26,8 +26,8 @@
       </form>
       <br>
       <!-- form to assign project -->
-      <form action="/brand/assign-project/<%= @brand_id %>" method="post">
-        <label for="store_id">Select a Project</label>
+      <form action="/brand/assign-store/<%= @brand_id %>" method="post">
+        <label for="store_id">Select a Store that carries <%= @brand.name %></label>
         <br>
         <input name="_method" type="hidden" value="post #{<%= @brand.id %>}">
         <select id='store_id' name='store_id' type='text'>

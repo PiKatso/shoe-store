@@ -29,10 +29,25 @@
         <br>
       </form>
       <br>
-      <!-- for to add brands -->
+      <!-- form to add existing brands to Store -->
+      <form action="/store/assign-brand/<%= @store_id %>" method="post">
+        <label for="brand_id">Select a Brand</label>
+        <br>
+        <input name="_method" type="hidden" value="post #{<%= @store.id %>}">
+        <select id='brand_id' name='brand_id' type='text'>
+          <% @brands.each() do |brand| %>
+            <option value="<%= brand.id()%>"> <%= brand.name() %> </option>
+          <% end %>
+        </select>
+        <br>
+        <br>
+        <button class="btn btn-success" type="submit">Add brand</button>
+      </form>
+      <br>
+      <!-- form to add brands -->
       <form class="form-group" action="/store/add-brand" method="post">
         <input name="store_id" type="hidden" value="<%= @store.id %>">
-        <label for="brand-name">Add a Brand to <%= @store.name %></label>
+        <label for="brand-name">Create and Add a Brand to <%= @store.name %></label>
         <input class="form-control" type="text" name="brand-name">
         <br>
         <label for="brand-price">Price</label>
