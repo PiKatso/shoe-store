@@ -16,9 +16,12 @@
       <form action="/brand/<%= @brand.id() %>/update" method="post">
         <input name="_method" type="hidden" value="patch">
 
-        <input id="brand-name" name="brand-name" type="text" placeholder="Edit the brand:">
-
+        <input class="form-control" name="brand-name" type="text" placeholder="new name">
+        <br>
+        <input class="form-control" name="brand-price" type="text" placeholder="new price">
+        <br>
         <button class="btn btn-success" type="submit">Update</button>
+        <br>
       </form>
       <br>
 

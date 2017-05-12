@@ -38,6 +38,22 @@ post "/store/add-brand" do
   redirect "/store/#{store_id}"
 end
 
+patch "/store/:id/update" do
+  store_name = params.fetch("store-name")
+  @store = Store.find(params.fetch("id").to_i)
+  @store.update({name: store_name})
+  redirect "/brands"
+end
+
+post "/store/assign-project/:id" do
+  brand_id = params.fetch('brand_id')
+  brand = Store.find(brand_id)
+  store_id = params.fetch('id')
+  store = Store.find(store_id)
+  brand.stores.push(brand)
+  redirect "/brands"
+end
+
 # Brand routing
 get('/brands') do
   @brand_message = Brand.all.length > 0 ? "Select a brand to review prices and locations for purchase" : "Add a brand below"
@@ -59,19 +75,11 @@ get "/brand/:id" do
   erb(:brand_edit)
 end
 
-# post "/brands" do
-#   store_id = params.fetch("store_id")
-#   store = Recipe.find(store_id)
-#   ingredient_name = params.fetch("ingredient-name")
-#   new_ingredient = Ingredient.create(name: ingredient_name)
-#   store.ingredients.push(new_ingredient)  #this how to assign to join table!!!! yay!
-#   redirect "/store/edit/#{store_id}"
-# end
-
 patch "/brand/:id/update" do
   brand_name = params.fetch("brand-name")
+  brand_price =params.fetch("brand-price")
   @brand = Brand.find(params.fetch("id").to_i)
-  @brand.update({name: brand_name})
+  @brand.update({name: brand_name, price: brand_price})
   redirect "/stores"
 end
 
