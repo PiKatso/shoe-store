@@ -2,7 +2,7 @@ class Brand < ActiveRecord::Base
   has_and_belongs_to_many :stores
 
   validates :price, presence: true
-  validates :price, numericality: { only_integer: true }
+  validates :price, numericality: { only_integer: true }, length: { maximum: 3 }
   validates :name, presence: true, length: { maximum: 100 }
   validates :name, uniqueness: { case_sensitive: false }
 
